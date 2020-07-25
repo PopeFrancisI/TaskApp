@@ -9,11 +9,11 @@ class DomElements {
     }
 
     loadAll(){
-        this.apiService.getTasks(tasks => {
-            tasks.map( task => {
+        this.apiService.getTasks().then(tasks => {
+            tasks.forEach( task => {
                 this.createTaskElement(task);
             });
-        }).catch( error => {console.log(error)});
+        }).catch( error => {console.log(error)})
     }
 
     createTaskElement(task) {
