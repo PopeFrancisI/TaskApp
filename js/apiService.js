@@ -21,7 +21,6 @@ class ApiService {
                     let tasks = tasksData.map(taskData => {
                         return this.createTaskFromResponseData(taskData);
                     })
-                    console.log(tasks);
                     resolve(tasks);
                 })
                 .catch(error => reject(error))
