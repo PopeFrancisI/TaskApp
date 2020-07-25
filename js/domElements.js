@@ -2,7 +2,7 @@
 
 class DomElements {
     constructor() {
-        this.apiService = ApiService();
+        this.apiService = new ApiService();
         this.todoAppElement = document.querySelector(".todo-app");
 
         this.loadAll();
