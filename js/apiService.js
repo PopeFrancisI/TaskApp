@@ -21,9 +21,31 @@ class ApiService {
                     let tasks = tasksData.map(taskData => {
                         return this.createTaskFromResponseData(taskData);
                     })
+                    console.log(tasks);
                     resolve(tasks);
                 })
                 .catch(error => reject(error))
+        });
+    }
+
+    saveTask(task){
+        return new Promise((resolve, reject) => {
+            fetch(this.url+'/api/tasks',{
+                headers: {
+                    'Authorization': this.apiKey,
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(task)
+            })
+                .then(response => {
+                    return response.json()
+                })
+                .then(json => {
+                    let newTask = this.createTaskFromResponseData(json.data);
+                    resolve(newTask);
+                })
+                .catch(error => {reject(error)})
         });
     }
 
