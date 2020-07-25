@@ -22,4 +22,12 @@ class ApiService {
                 .catch(error => reject(error))
         });
     }
+
+    createTaskFromResponseData(data) {
+        let task = new Task(data.title, data.description, data.status);
+        if(data.id){
+            task.id = data.id;
+        }
+        return task;
+    }
 }
