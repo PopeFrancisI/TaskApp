@@ -17,7 +17,11 @@ class ApiService {
                     return response.json();
                 })
                 .then(json => {
-                    resolve(json);
+                    let tasksData = json.data;
+                    let tasks = tasksData.map(taskData => {
+                        return this.createTaskFromResponseData(taskData);
+                    })
+                    resolve(tasks);
                 })
                 .catch(error => reject(error))
         });
